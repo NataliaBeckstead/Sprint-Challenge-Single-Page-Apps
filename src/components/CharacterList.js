@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import styled, { StyleSheetManager } from "styled-components";
+import styled from "styled-components";
 
 const CharHodor = styled.div `
   display: flex;
@@ -16,21 +16,41 @@ margin-right: 5rem;
 
 export default function CharacterList() {
   const [characters, setCharacters] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     axios
       .get(`https://cors-anywhere.herokuapp.com/https://rickandmortyapi.com/api/character/`)
       .then(response => {
         console.log("characters", response.data.results);
-        setCharacters(response.data.results);
+        const charactersList = response.data.results.filter(char =>
+          char.name.toLowerCase().includes(query.toLowerCase())
+        );
+        setCharacters(charactersList);
       })
       .catch(error => {
         console.log("the data was not return", error);
       });
-  }, []);
+  }, [query]);
+  
+  const handleInputChange = event => {
+    setQuery(event.target.value);
+  };
 
   return (
     <section className="character-list">
+      <form className="search">
+        <input
+          type="text"
+          onChange={handleInputChange}
+          value={query}
+          name="name"
+          tabIndex="0"
+          className="prompt search-name"
+          placeholder="search by name"
+          autoComplete="off"
+        />
+      </form>
       <div>
         {characters.map(item => (
           <CharHodor key={item.id} >
