@@ -28,6 +28,9 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 - [ ]  Explain benefit(s) using `client-side routing`?
 
 > Answer:
+/***************************************************************************************/
+`Even though entire app loading slower at first, re-rendering just parts of the pages taking way less time than loading entire pages every time`
+/***************************************************************************************/
 
 ## Project Set Up
 

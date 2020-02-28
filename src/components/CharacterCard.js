@@ -1,5 +1,8 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export default function CharacterCard() {
-  return <span>todo: character</span>;
-}
+  return(
+    <span>todo: character</span>
+  );
+};
