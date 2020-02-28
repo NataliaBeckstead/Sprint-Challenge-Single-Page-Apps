@@ -32,7 +32,7 @@ export default function CharacterList() {
         console.log("the data was not return", error);
       });
   }, [query]);
-  
+
   const handleInputChange = event => {
     setQuery(event.target.value);
   };
@@ -40,7 +40,9 @@ export default function CharacterList() {
   return (
     <section className="character-list">
       <form className="search">
+        <label htmlFor="search">Find character:
         <input
+          id="search"
           type="text"
           onChange={handleInputChange}
           value={query}
@@ -50,6 +52,7 @@ export default function CharacterList() {
           placeholder="search by name"
           autoComplete="off"
         />
+        </label>
       </form>
       <div>
         {characters.map(item => (
