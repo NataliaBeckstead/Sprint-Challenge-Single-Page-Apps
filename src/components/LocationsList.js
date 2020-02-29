@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
+import Earth from "../images/earth.png";
+import Cable from "../images/cable.jpg";
+import Anatomy from "../images/anatomy.jpg";
+import Citadel from "../images/citadel.jpg";
+import Worldender from "../images/worldender.png";
+import Monster from "../images/monster.jpg";
 
-// const CharHodor = styled.div `
-//   display: flex;
-//   align-items: center;
-//   margin: 3%;
-//   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-// `;
+
+const LocationHodor = styled.div `
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 30%;
+    margin: 3%;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+`;
 
 // const Avatar = styled.img `
 // margin: 3rem;  
@@ -15,37 +23,65 @@ import styled from "styled-components";
 // `;
 
 export default function LocationList() {
+
+    const data = [
+        {
+            id: 1,
+            name: "Earth",
+            picture: Earth
+        },
+        {
+            id: 2,
+            name: "Interdimensional Cable",
+            picture: Cable
+        },
+        {
+            id: 3,
+            name: "Anatomy Park",
+            picture: Anatomy
+        },
+        {
+            id: 4,
+            name: "Citadel of Ricks",
+            picture: Citadel
+        },
+        {
+            id: 5,
+            name: "Worldender's lair",
+            picture: Worldender
+        },
+        {
+            id: 6,
+            name: "Testicle Monster Dimension",
+            picture: Monster
+        }
+    ];
+
   const [locations, setLocations] = useState([]);
-  //const [query, setQuery] = useState("");
+  const [query1, setQuery1] = useState("");
 
   useEffect(() => {
-    axios
-      .get(`https://rickandmortyapi.com/api/location/`)
-      .then(response => {
-        console.log(response);
-        // const charactersList = response.data.results.filter(char =>
-        //   char.name.toLowerCase().includes(query.toLowerCase())
-        // );
-        setLocations(response);
-      })
-      .catch(error => {
-        console.log("the data was not return", error);
-      });
-  }, []);
+    
+        const LocationList = data.filter(loc =>
+          loc.name.toLowerCase().includes(query1.toLowerCase())
+        );
+        setLocations(LocationList);
+      
+  }, [query1]);
 
-//   const handleInputChange = event => {
-//     setQuery(event.target.value);
-//   };
+  const handleInputChange1 = event => {
+    setQuery1(event.target.value);
+  };
 
   return (
     <section className="character-list">
-      {/* <form className="search">
-        <label htmlFor="search">Find character:
+      <form className="search">
+        <label htmlFor="search">Find location:
         <input
           id="search"
           type="text"
-          onChange={handleInputChange}
-          value={query}
+          onChange={handleInputChange1}
+          value={query1}
           name="name"
           tabIndex="0"
           className="prompt search-name"
@@ -55,24 +91,19 @@ export default function LocationList() {
         </label>
       </form>
       <div>
-        {characters.map(item => (
-          <CharHodor key={item.id} >
-            <Avatar
-              className="item-list-image"
-              src={item.image}
-              alt={item.name}
-            />
+        {locations.map(item => (
+          <LocationHodor key={item.id} >
             <div>
               <h3>{item.name}</h3>
-              <p>Status: {item.status}</p>
-              <p>Species: {item.species}</p>
-              <p>Gender: {item.gender}</p>
-              <p>Origin: {item.origin.name}</p>
-              <p>Location: {item.location.name}</p>
             </div>
-          </CharHodor>
+            <img
+              className="item-list-image"
+              src={item.picture}
+              alt={item.name}
+            />
+          </LocationHodor>
       ))}
-    </div> */}
+    </div>
     </section>
   );
 }

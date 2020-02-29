@@ -40,7 +40,8 @@ export default function CharacterList() {
   return (
     <section className="character-list">
       <form className="search">
-        <label htmlFor="search">Find character:
+        <label htmlFor="search">Find character:&#8201;
+
         <input
           id="search"
           type="text"

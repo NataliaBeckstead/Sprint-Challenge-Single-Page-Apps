@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 
 const NavBar = styled.div `
-    width: 100%;
+    width: 97%;
     display: flex;
     justify-content: center;
     background-color: lightblue;
